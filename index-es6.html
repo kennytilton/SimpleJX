@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SimpleJX Introduction</title>
+
+    <link rel="stylesheet" href="css/sjxtutorial.css">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <script src="js/closure-library/closure/goog/base.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <!--<script src="https://rawgit.com/kennytilton/matrix/master/js/matrix/public/mxweb.smp.js"></script>-->
+    <script src="js/Matrix/Cells.js"></script>
+    <script src="js/Matrix/Model.js"></script>
+    <script src="js/Matrix/mxWeb.js"></script>
+    <script src="js/Matrix/mxXHR.js"></script>
+
+    <script src="js/utility.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<h1>Script failed to load.</h1>
+<p>Please check the browser console for diagnostics.</p>
+<script>
+    window.domLogging = false
+    // server-side rendering would be easy -- we generate HTML at the outset anyway
+    var pageHtml = tag2html( window.sjxMain());
+    // console.log('page html', pageHtml)
+    document.body.innerHTML = pageHtml;
+</script>
+</body>
+</html>
+

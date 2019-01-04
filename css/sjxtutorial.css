@@ -1,0 +1,155 @@
+html {
+    background-color: beige;
+}
+
+html * {
+    font-family: "Trebuchet MS", "Lucida Grande"
+    , "Lucida Sans Unicode"
+    , "Lucida Sans", Tahoma, sans-serif;
+}
+
+body {
+    margin: 24px
+}
+
+/*html { overflow-y: scroll; }*/
+html { margin-left: calc(100vw - 100%); }
+
+.doctitle {
+    text-align:center;
+    font-size:40px;
+}
+
+.tagline {
+    text-align:center;
+    font-size:18px;
+    font-style:italic;
+}
+
+
+/* keep some examples handy */
+
+.workingworking {
+    cursor:wait;
+}
+
+.help {
+    margin: 0px;
+    padding: 0 24px 6px 0;
+    background-color: #ff6600;
+    color: black;
+    list-style: none;
+}
+
+.helpli {
+    padding: 6px 18px 9px 6px;
+    margin: 0;
+}
+
+.helpli:nth-child(odd) {
+    background: #ffefd5;
+}
+.helpli:nth-child(even) {
+    background: #e7cda7;
+}
+.slideIn {
+    animation-duration: 1s;
+    animation-name: slideFadeIn;
+}
+.slideOut {
+    animation-duration: 1s;
+    animation-name: slideFadeIn;
+    animation-direction: reverse;
+}
+@keyframes slideFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fazeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+.app {
+    background: ivory;
+    padding: 24px;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.doctitle {
+    text-align:center;
+    font-size:40px;
+}
+
+.simplicityQCarousel {
+    background:gray;
+    display:flex;
+    max-width:600px;
+    padding:12px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.qControlBar {
+    display: flex;
+    align-items: center;
+}
+
+.captionImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.caption {
+    text-align:center;
+    font-weight:bold;
+}
+
+.qImage {
+    min-height:360px;
+    max-height:360px;
+    min-width:400px;
+    max-width:400px;
+}
+
+.qNo {
+    margin-left: 9px;
+    padding: 0px 4px;
+    color:ivory;
+    font-size:12px;
+}
+
+.qNoCurrent {
+    border: solid ivory 1px;
+}
+
+.qShifter {
+    font-size:36px;
+    padding:0px;
+    color:dark-gray;
+}
+
+.qPlayer {
+    font-size:36px;
+    padding:0px;
+    color:black;
+}
+
+@keyframes fazeIn {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.fazer {
+    animation-duration: 3s;
+    animation-name: fazeIn;
+    animation-fill-mode: forwards;
+}
