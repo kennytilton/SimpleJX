@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value>
+        <ClojureCodeStyleSettings>{
+  :clj-http.client/get :only-indent
+  :cljs.core/and 1000
+  :cljs.core/sort-by :only-indent
+  :cljs.pprint/cl-format :only-indent
+  :cljs.test/deftest :only-indent
+  :clojure.string/join :only-indent
+  :clojure.string/split :only-indent
+  :clojure.test/deftest :only-indent
+  :goog.dom/appendChild :only-indent
+  :taoensso.tufte/p :only-indent
+  :tiltontec.cell.core/c?+ :only-indent
+  :tiltontec.cell.core/with-synapse :only-indent
+  :tiltontec.cell.integrity/with-cc :only-indent
+  :tiltontec.cell.integrity/with-integrity :only-indent
+  :tiltontec.cell.observer/fn-obs :only-indent
+  :tiltontec.model.core/make :only-indent
+  :tiltontec.model.core/md-reset! :only-indent
+  :tiltontec.model.core/with-par :only-indent
+  :tiltontec.tag.gen/div :only-indent
+  :tiltontec.tag.gen/footer :only-indent
+  :tiltontec.tag.gen/make-tag :only-indent
+  :tiltontec.tag.gen/section :only-indent
+  :tiltontec.tag.style/make-css-inline :only-indent
+  :tiltontec.tag.widget/tag-checkbox :only-indent
+  :tiltontec.xhr/make-xhr :only-indent
+  :tiltontec.xhr/send-xhr :only-indent
+  :tiltontec.xhr-test/xhr-dummy :only-indent
+  :tiltontec.xhr.core/make-xhr :only-indent
+  :tiltontec.xhr.core/send-xhr :only-indent
+}</ClojureCodeStyleSettings>
+      </value>
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
+  </component>
+</project>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: tiltontec/mxweb:0.1.5-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/tiltontec/mxweb/0.1.5-SNAPSHOT/mxweb-0.1.5-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

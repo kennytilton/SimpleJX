@@ -1,100 +1,66 @@
-html {
-    background-color: beige;
-}
-
-html * {
-    font-family: "Trebuchet MS", "Lucida Grande"
-    , "Lucida Sans Unicode"
-    , "Lucida Sans", Tahoma, sans-serif;
-}
-
-body {
-    margin: 24px
-}
-
-/*html { overflow-y: scroll; }*/
 html { margin-left: calc(100vw - 100%); }
-
-.doctitle {
-    text-align:center;
-    font-size:40px;
-}
-
-.tagline {
-    text-align:center;
-    font-size:18px;
-    font-style:italic;
-}
-
-
-/* keep some examples handy */
-
-.workingworking {
-    cursor:wait;
-}
-
-.help {
-    margin: 0px;
-    padding: 0 24px 6px 0;
-    background-color: #ff6600;
-    color: black;
-    list-style: none;
-}
-
-.helpli {
-    padding: 6px 18px 9px 6px;
-    margin: 0;
-}
-
-.helpli:nth-child(odd) {
-    background: #ffefd5;
-}
-.helpli:nth-child(even) {
-    background: #e7cda7;
-}
-.slideIn {
-    animation-duration: 1s;
-    animation-name: slideFadeIn;
-}
-.slideOut {
-    animation-duration: 1s;
-    animation-name: slideFadeIn;
-    animation-direction: reverse;
-}
-@keyframes slideFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes fazeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
 
 .app {
     background: ivory;
-    padding: 24px;
-    max-width: 600px;
+    padding: 6px;
     display: flex;
     align-items: center;
+}
+.titlePanel {
+    display: flex;
     flex-direction: column;
 }
 .doctitle {
     text-align:center;
-    font-size:40px;
+    font-size:28px;
 }
-
+.tagline {
+    margin-top:-1em;
+    font_size:18px;
+    font-style:italic;
+    text-align:center;
+}
 .simplicityQCarousel {
     background:gray;
     display:flex;
-    max-width:600px;
     padding:12px;
     align-items: center;
+    flex-direction: row-reverse;
+    margin-left:24px;
+}
+
+.qSteppers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.stepper {
+    background:none;
+    border:none;
+    outline: none;
+    margin:0;
+    padding:0;
+    font-size:36px;
+    color:dark-gray;
+    cursor: pointer;
+}
+
+.stepper:disabled {
+    visibility:hidden;
+}
+
+.qDirects {
+    display: flex;
+    margin-top: 6px;
     flex-direction: column;
+    align-items: center;
+    min-width: 72px;
 }
 
 .qControlBar {
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -103,53 +69,55 @@ html { margin-left: calc(100vw - 100%); }
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-height: 300px;
+    min-width: 300px;
 }
 
 .caption {
     text-align:center;
     font-weight:bold;
+    color: #ddd;
+    max-width: 300px;
 }
 
 .qImage {
-    min-height:360px;
-    max-height:360px;
-    min-width:400px;
-    max-width:400px;
+    min-height:260px;
+    max-height:260px;
+    min-width:260px;
+    max-width:260px;
 }
 
 .qNo {
-    margin-left: 9px;
+    margin-left: 0px;
     padding: 0px 4px;
     color:ivory;
     font-size:12px;
+    cursor: pointer;
+
 }
 
 .qNoCurrent {
-    border: solid ivory 1px;
-}
-
-.qShifter {
-    font-size:36px;
-    padding:0px;
-    color:dark-gray;
+    border: solid #444 1px;
 }
 
 .qPlayer {
     font-size:36px;
     padding:0px;
+    cursor: pointer;
     color:black;
 }
 
 @keyframes fazeIn {
     0% {
-        opacity: 0.2;
+        opacity: 0.0;
     }
+
     100% {
         opacity: 1;
     }
 }
 .fazer {
-    animation-duration: 3s;
     animation-name: fazeIn;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
 }

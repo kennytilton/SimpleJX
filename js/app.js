@@ -6,137 +6,133 @@
 
 clg = console.log
 
-// --- main ---------------------------------------
+main = () =>
+  div({class: 'app'},
+    div( {class: 'titlePanel'},
+      h1({class: 'doctitle'}, "SimpleJX"),
+      SimpleJXTagLine(),
+      Credits({style: "font-size:12px; margin-top:0"},
+        "Created by <a href='https://github.com/kennytilton'>Kenny Tilton</a>",
+        "Maker of <a href='http://tiltontec.com'>Tilton's Algebra</a>")),
+    QuoteCarousel())
 
-SimpleJXTagLine = () => p({style: {font_size:'18px',
-      font_style:'italic',
-      text_align:'center'}},
-  "The simplicity of HTML. The power of HLL.")
+QuoteCarousel = () =>
+  div({class: "simplicityQCarousel"},
+    {name: 'qCarousel',
+      quoteNo: cI(0),
+      playing: cI(false),
+      ticker: cF( c => {
+        if (c.md.playing) {
+          return setInterval( () => { ++c.md.quoteNo }, 4000)
+        } else if (typeof c.pv === "number") {
+          clearInterval( c.pv)
+          return null
+        }})},
+    QCarouselControlBar(),
+    QImage())
 
-captionedImage = (imageSrc, imageWidth, caption, color='black', captionWidth=200) =>
-  div( {class: ['captionImage', 'fazer']},
-    img( {style: `width:300px`,src: imageSrc}),
-    span( {class: 'caption',
-        style: {color: color,
-          max_width: `${captionWidth}px`}},
-      caption))
+fmQuoteNo = md => wrapAt( md.fmUp('qCarousel').quoteNo, simplicityQ.length)
 
-simplicityQ = [
-  {author:"Newton",
-    quote: "Nature is pleased with simplicity. ",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/GodfreyKneller-IsaacNewton-1689.jpg"},
-  {author:"Dr.Seuss",
-    quote: "Sometimes the questions are complicated and the answers are simple.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/doctor_seuss.jpg"},
-  {author:"Jobs",
-    quote: "Focus and simplicity can move mountains.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/steve_jobs.jpg"},
-  {author:"Kerouac",
-    quote: "One day I will find the right words, and they will be simple.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/kerouac.jpg"},
-  {author:"Occam",
-    quote: "It is vain to do with more what can be done with less.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/William_of_Ockham.png"},
-  {author:"Einstein",
-    quote: "Make everything as simple as possible, but not simpler.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/Albert-Einstein.jpg"},
-  {author: "daVinci", quote: "Simplicity is the ultimate sophistication",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/daVinci.jpg"},
-  {author: "Bruce", quote: "The extraordinary aspect of martial arts lies in its simplicity.",
-    url: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/BruceLee300.jpg"}
-]
+QImage = () =>
+  div( {class: ['captionImage']},
+    { currentQ: cF( c => simplicityQ[ fmQuoteNo(c.md)])},
+    c => [ img( {class: "qImage fazer",
+      src: S3Root+c.md.currentQ.url}),
+      span( {class: 'caption fazer'},
+        c.md.currentQ.quote)])
 
-simplicityQShifter = (increment) => {
-  /* to simplify things, we hard-wire a simplicity quote shifter */
-  return i({class:'material-icons qShifter',
-      onclick: (md)=> {
-        carousel = md.fmUp('qCarousel')
-        carousel.quoteNoRaw += increment // publish to quoteNo is transparent
+QCarouselControlBar = () =>
+  div({class: 'qControlBar'},
+    div({class:'qSteppers'},
+      QStepper(-1),
+      QStepper(1)),
+    div({class: 'qDirects'},
+      [...simplicityQ.keys()].map( QDirectSelect)),
+    QPlayButton('pause'))
+
+QStepper = (increment) =>
+  button({class:'material-icons stepper',
+      disabled: cF( c => c.md.fmUp('qCarousel').playing),
+      onclick: md => {
+        let qc = md.fmUp('qCarousel')
+        qc.playing = false
+        clg('click', md, qc)
+        qc.quoteNo += increment}},
+    increment === -1 ?
+      'navigate_before'
+      :'navigate_next')
+
+QDirectSelect = (n) =>
+  span({class: cF( md => {
+      return ['qNo', fmQuoteNo(md) == n ? 'qNoCurrent':null]}),
+    onclick: md => {
+      // stop the carousel if it is playing on auto, then set the quote
+      qc = md.fmUp('qCarousel')
+      qc.playing = false
+      qc.quoteNo = n
+    }}, simplicityQ[n].author)
+
+QPlayButton = () =>
+  i({class: 'material-icons qPlayer',
+    onclick: md => {
+      qc = md.fmUp('qCarousel')
+      if (qc.playing)
+        qc.playing = false
+      else {
+        qc.playing = true
       }
     },
-    increment === -1 ? 'navigate_before' :'navigate_next')
-}
+    content: cF( c=> {
+      return c.md.fmUp('qCarousel').playing ?
+        'pause' : 'play_arrow'
+    })})
+
+SimpleJXTagLine = () =>
+  p({class: 'tagline'},
+    "The simplicity of HTML.<br>The power of HLL.<br>The magic of reactive.")
+
+S3Root = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1590864/'
+
+simplicityQ = [
+  {author:"Einstein",
+    quote: "Make everything as simple as possible,<br>but not simpler.",
+    url: "Albert-Einstein.jpg"},
+  {author:"Newton", quote: "Nature is pleased with simplicity. ",
+    url: "GodfreyKneller-IsaacNewton-1689.jpg"},
+  {author:"Kerouac", quote: "One day I will find the right words,<br>and they will be simple.",
+    url: "kerouac.jpg"},
+  {author:"Occam", quote: "It is vain to do with more<br>what can be done with less.",
+    url: "William_of_Ockham.png"},
+  {author: "daVinci", quote: "Simplicity is the ultimate sophistication",
+    url: "daVinci.jpg"}
+]
+
+Credits = (attrs, ...content) =>
+  footer(Object.assign({}, {class: "info"}, attrs),
+    content.map( s => p({},s)));
+
 
 function wrapAt( n, max) {
   let raw = (n % max)
   return raw < 0 ? raw + max : raw
 }
 
-/*
-  Now let's look at refactoring, something that should be part
-  of the TodoMVC Challenge, because UI development is more
-  refactoring than creating.
-*/
-
-function mkQuoteIndex (n) {
-  return span({
-          class: cF( md => {
-            currQNo = md.fmUp('qCarousel').quoteNo
-            return ['qNo', currQNo == n ? 'qNoCurrent':null]}),
-          onclick: md => {
-            md.fmUp('qCarousel').quoteNoRaw = n}
-        }, simplicityQ[n].author)
-}
-
-function QPlayButton () {
-  return i({class: 'material-icons qPlayer',
-            onclick: md => {
-              qc = md.fmUp('qCarousel')
-              qc.playing = !qc.playing
-            },
-            content: cF( c=> {
-              console.log('running', c.md.fmUp('qCarousel').playing)
-              return c.md.fmUp('qCarousel').playing ? 'pause' : 'play_arrow'
-            })})
-}
-
-function CarouselControlBar () {
-  return div({class: 'qControlBar'},
-    simplicityQShifter(-1),
-    [...simplicityQ.keys()].map( mkQuoteIndex),
-    simplicityQShifter(1),
-    QPlayButton())
-}
-function Carousel () {
-  return div({class: "simplicityQCarousel"},
-    {name: 'qCarousel',
-      playing: cI( false),
-      quoteNoRaw: cI(0),
-      quoteNo: cF( c => wrapAt(c.md.quoteNoRaw, simplicityQ.length))},
-    c => { return [CarouselControlBar(),
-      div({class: 'qImage'},
-        c=> {
-          let cq = simplicityQ[ wrapAt(c.md.par.quoteNo, simplicityQ.length)]
-          return captionedImage(cq.url, cq.width, cq.quote, 'white', 240)})]})
-}
-
-main = () => div({class: 'app'},
-  h1({class: 'doctitle'},
-    "SimpleJX&trade;"),
-  SimpleJXTagLine(),
-  Carousel())
+keyChord = {
+  ArrowRight: sq => ++sq.quoteNo,
+  ArrowLeft: sq => --sq.quoteNo,
+  ' ': sq => sq.playing = !sq.playing
+};
 
 document.onkeydown = function(e) {
-  // focus (click) on the result panel to direct keyboard events there
-  e = e || window.event;
-
-  let appDom = document.getElementsByClassName('app')[0],
-    app = dom2mx( appDom);
-
-  let data = parseInt( e.key),
-    sq = app.fmDown("qCarousel");
-
-  if (isNaN( data)) {
-    if (e.key==='ArrowRight') {
-      ++sq.quoteNoRaw;
-    } else if (e.key==='ArrowLeft') {
-      --sq.quoteNoRaw;
-    }
+  if (act = keyChord[(e || window.event).key]) {
+    let appDom = document.getElementsByClassName("app")[0],
+      app = dom2mx(appDom),
+      sqx = app.fmDown("qCarousel");
+    act(sqx);
   }
 };
 
-function SimpleJXDemo () {
-  return (main())
-}
 
-window['sjxMain'] = SimpleJXDemo;
+window['sjxMain'] = main;
+
+

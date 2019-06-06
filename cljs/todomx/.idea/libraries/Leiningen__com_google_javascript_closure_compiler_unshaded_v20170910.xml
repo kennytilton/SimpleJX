@@ -1,0 +1,8 @@
+<component name="libraryTable">
+  <library name="Leiningen: com.google.javascript/closure-compiler-unshaded:v20170910">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/javascript/closure-compiler-unshaded/v20170910/closure-compiler-unshaded-v20170910.jar!/" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,8 @@
+<component name="libraryTable">
+  <library name="Leiningen: com.google.jsinterop/jsinterop-annotations:1.0.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/jsinterop/jsinterop-annotations/1.0.0/jsinterop-annotations-1.0.0.jar!/" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
